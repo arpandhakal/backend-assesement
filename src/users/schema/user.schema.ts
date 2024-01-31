@@ -11,10 +11,8 @@ export class Users {
   @Prop()
   email: string;
 
-
   @Prop()
   role: string;
-
 
   @Prop()
   password: string;
