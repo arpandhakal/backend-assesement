@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Users, UsersDocument } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
+import { RealtimeService } from 'src/realtime/realtime.service';
 
 interface UserData {
   name: string;
@@ -13,6 +14,7 @@ interface UserData {
 export class UsersService {
   constructor(
     @InjectModel(Users.name) private userModel: Model<UsersDocument>,
+    private readonly realTimeService: RealtimeService,
   ) {}
 
   async getUsers(name?: string, email?: string, role?: string): Promise<any> {
@@ -45,7 +47,9 @@ export class UsersService {
 
   async postUsers(dto: CreateUserDto) {
     try {
-      await this.userModel.create(dto);
+      // console.log(dto);
+      const result = await this.userModel.create(dto);
+      await this.realTimeService.emit('created', result);
       return { message: 'user crested' };
     } catch (err) {
       throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
