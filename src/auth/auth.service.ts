@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Users } from 'src/auth/schema/users';
+import { Users, UsersDocument } from 'src/auth/schema/users';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/signup.dto';
@@ -10,7 +10,7 @@ import { SignUpDto } from './dto/signup.dto';
 export class AuthService {
   constructor(
     @InjectModel(Users.name)
-    private userModel: Model<Users>,
+    private userModel: Model<UsersDocument>,
     private jwtService: JwtService,
   ) {}
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
