@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RealtimeModule } from './realtime/realtime.module';
+import { EventsModule } from './events/events.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -13,6 +16,8 @@ import { RealtimeModule } from './realtime/realtime.module';
     ),
     RealtimeModule,
     UsersModule,
+    ProductsModule,
+    // EventEmitterModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],

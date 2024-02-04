@@ -16,6 +16,12 @@ export class Users {
 
   @Prop()
   password: string;
+
+  @Prop()
+  githubusername: string;
+
+  @Prop()
+  githubavatar: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(Users);

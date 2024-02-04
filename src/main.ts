@@ -5,16 +5,23 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const config = new DocumentBuilder()
-    .setTitle('Nest Class API')
-    .setDescription('')
-    .setVersion('1.0')
-    .addBasicAuth()
-    .build();
 
+  // const config = new DocumentBuilder()
+  //   .setTitle('Nest Class API')
+  //   .setDescription('')
+  //   .setVersion('1.0')
+  //   .addBasicAuth()
+  //   .build();
 
-    const document= SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup
+  // const document = SwaggerModule.createDocument(app, config);
+  // SwaggerModule.setup('api', app, document, {
+  //   swaggerOptions: {
+  //     defaultModelsExpandDepth: -1,
+  //     defaultModelExpandDepth: 3,
+  //     tagsSorter: 'alpha',
+  //     operationSorter: 'method',
+  //   },
+  // });
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   await app.listen(3000);
