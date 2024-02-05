@@ -2,7 +2,7 @@
 
 ## Description
 
-\*\*Nest.js is a powerful and extensible framework for building server-side applications. It is inspired by Angular and is built with TypeScript.
+Nest.js is a powerful and extensible framework for building server-side applications. It is inspired by Angular and is built with TypeScript.
 
 # Install Nest CLI globally (if not installed)
 
