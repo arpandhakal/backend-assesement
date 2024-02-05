@@ -16,9 +16,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     UsersModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://sujita:express12@cluster0.5ukuwnd.mongodb.net/Products',
-    ),
+    MongooseModule.forRoot('MongoDB link'),
     ProductsModule,
 
     RealtimeModule,
