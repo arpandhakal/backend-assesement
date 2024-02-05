@@ -19,7 +19,7 @@ cd my-nest-app
 
 ## Prerequisites
 
-- **nodejs v16.17.0 ((v13.0.0 recommended))**: Node.js is a runtime environment that allows you to execute JavaScript code outside of a web browser. It is built on the V8 JavaScript runtime and is designed to be fast, efficient, and scalable. You can download it from [here](https://nodejs.org/en/download).
+- **nodejs v14.0.0 ()**: Node.js is a runtime environment that allows you to execute JavaScript code outside of a web browser. It is built on the V8 JavaScript runtime and is designed to be fast, efficient, and scalable. You can download it from [here](https://nodejs.org/en/download).
 
 - **Visual Studio Code**: Install Visual Studio Code, a lightweight and extensible code editor, download it from the [VS Code website](https://code.visualstudio.com/).
 
