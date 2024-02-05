@@ -12,7 +12,7 @@ import { ProductsModule } from './products/products.module';
   imports: [
     UsersModule,
     MongooseModule.forRoot(
-      'mongodb+srv://subekshya4:Subekshya12@cluster0.lskghy8.mongodb.net/products',
+      'mongodb+srv://subekshya4:Subekshya12@cluster0.lskghy8.mongodb.net/nestDB',
     ),
     RealtimeModule,
     UsersModule,
