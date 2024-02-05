@@ -12,9 +12,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     EventEmitterModule.forRoot(),
     UsersModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://sushilramtel113:sushilramtel113@cluster0.urvoikx.mongodb.net/products',
-    ),
+    MongooseModule.forRoot('your mongoDb link'),
     RealtimeModule,
     ProductsModule,
     AuthModule,
