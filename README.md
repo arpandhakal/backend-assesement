@@ -25,7 +25,7 @@ cd my-nest-app
 
 - **Git**: Make sure you have Git installed on your system. You can download it from [here](https://git-scm.com/). **`.gitignore` file**: Create a `.gitignore` file in the root of your project directory. This file specifies which files and directories should be excluded from version control. You can refer to the [Git documentation](https://git-scm.com/docs/gitignore) for more information on how to create and customize a `.gitignore` file.
 
--**node module**- Make sure you have install all package that are used in the project.You can check the package.json file to see all the package that are installed.
+- **node module** : Make sure you have install all package that are used in the project.You can check the package.json file to see all the package that are installed.
 
 ## Installation
 
