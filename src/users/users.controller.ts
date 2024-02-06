@@ -10,8 +10,6 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user-dto';
-import { retry } from 'rxjs';
-import { UpdateProductDto } from 'src/products/dto/update-product.dto';
 import { UpdateUserDto } from './dto/update-user-dto';
 
 @Controller('users')
@@ -27,7 +25,7 @@ export class UsersController {
     return this.usersService.getUsers(name, email, role);
   }
 
-  @Get('/users/:id')
+  @Get('/:id')
   getUser(@Param() id: string): any {
     return this.usersService.getUsersById(id);
   }
@@ -43,6 +41,6 @@ export class UsersController {
   }
   @Patch('/update/:id')
   updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.updateUser(id,updateUserDto);
+    return this.usersService.updateUser(id, updateUserDto);
   }
 }
