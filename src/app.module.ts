@@ -4,16 +4,16 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductModule } from './products/products.module';
-import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+// import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
     UsersModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://dwashkarma:dwashkarma@cluster0.dzezum1.mongodb.net/Nest',
-    ),
+    MongooseModule.forRoot(process.env.MongoUrl),
     ProductModule,
-    AuthModule,
+    // AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
