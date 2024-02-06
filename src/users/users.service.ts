@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Users, UsersDocument } from './schema/user.schema';
 import mongoose, { Model, Types } from 'mongoose';
@@ -50,6 +55,11 @@ export class UsersService {
   //getUserById
   async getUsersById(id: string): Promise<any> {
     try {
+      //check validation on Mongoose Id
+      const isValidId = mongoose.isValidObjectId(id);
+      if (!isValidId) {
+        throw new BadRequestException('Please enter valid Id');
+      }
       const parseId = new Types.ObjectId(id);
       const result = await this.userModel.findById(parseId).exec();
       return result;
@@ -83,6 +93,13 @@ export class UsersService {
   //Update UserBy ID
   async updateUser(id: string, createuserDto: CreateUserDto): Promise<any> {
     try {
+      //check validation on Mongoose Id
+
+      const isValidId = mongoose.isValidObjectId(id);
+
+      if (!isValidId) {
+        throw new BadRequestException('Please enter valid Id');
+      }
       const parseId = new Types.ObjectId(id);
       const result = await this.userModel
         .findByIdAndUpdate(parseId, createuserDto, {

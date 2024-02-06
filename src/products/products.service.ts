@@ -1,9 +1,14 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product, ProductDocument } from './schema/product';
-import { Model, Types } from 'mongoose';
+import mongoose, { Model, Types } from 'mongoose';
 
 @Injectable()
 export class ProductService {
@@ -56,6 +61,13 @@ export class ProductService {
   //getUserById
   async getProductsByID(id: string): Promise<any> {
     try {
+      //check validation on Mongoose Id
+
+      const isValidId = mongoose.isValidObjectId(id);
+
+      if (!isValidId) {
+        throw new BadRequestException('Please enter valid Id');
+      }
       const parseId = new Types.ObjectId(id);
       const result = await this.productModel.findById(parseId).exec();
       return result;
@@ -76,6 +88,13 @@ export class ProductService {
 
   async UpdateProduct(id: string, updateProductDto: UpdateProductDto) {
     try {
+      //check validation on Mongoose Id
+
+      const isValidId = mongoose.isValidObjectId(id);
+
+      if (!isValidId) {
+        throw new BadRequestException('Please enter valid Id');
+      }
       const parseId = new Types.ObjectId(id);
       const result = await this.productModel
         .findByIdAndUpdate(parseId, updateProductDto, {
