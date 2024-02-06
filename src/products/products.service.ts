@@ -74,29 +74,15 @@ export class ProductService {
     }
   }
 
-  update(id: string, updateProductDto: UpdateProductDto) {
-    return this.productModel
-      .updateOne(
-        { _id: id },
-        {
-          productName: updateProductDto.productName,
-          description: updateProductDto.description,
-          productPrice: updateProductDto.productPrice,
-        },
-      )
-      .exec();
-  }
   async UpdateProduct(id: string, updateProductDto: UpdateProductDto) {
     try {
+      const parseId = new Types.ObjectId(id);
       const result = await this.productModel
-        .updateOne(
-          { _id: id },
-          {
-            productName: updateProductDto.productName,
-            description: updateProductDto.description,
-            productPrice: updateProductDto.productPrice,
-          },
-        )
+        .findByIdAndUpdate(parseId, updateProductDto, {
+          new: true,
+          runValidators: true,
+        })
+
         .exec();
       return result;
     } catch (error) {
