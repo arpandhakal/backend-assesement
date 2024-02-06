@@ -12,6 +12,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user-dto';
 import { retry } from 'rxjs';
 import { UpdateProductDto } from 'src/products/dto/update-product.dto';
+import { UpdateUserDto } from './dto/update-user-dto';
 
 @Controller('users')
 export class UsersController {
@@ -40,9 +41,8 @@ export class UsersController {
   deleteUser(@Param() id: string): any {
     return this.usersService.deleteUser(id);
   }
-  // @Patch('/update/:id')
-  // updateUser(@Param('id') id:string,@Body() updateUserDto:CreateUserDto){
-  //   return this.usersService.updateUser
-
-  // }
+  @Patch('/update/:id')
+  updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.updateUser(id,updateUserDto);
+  }
 }

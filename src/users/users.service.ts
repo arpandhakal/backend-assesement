@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Users, UsersDocument } from './schema/user.schema';
-import { Model, Types } from 'mongoose';
+import mongoose, { Model, Types } from 'mongoose';
 import { CreateUserDto } from './dto/create-user-dto';
 
 interface UserData {
@@ -11,11 +11,15 @@ interface UserData {
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel(Users.name) private userModel: Model<UsersDocument>,
+    @InjectModel(Users.name) private userModel: mongoose.Model<UsersDocument>,
   ) {}
 
   //getAllUsers
-  async getUsers(name?: string, email?: string, role?: string): Promise<any> {
+  async getUsers(
+    name?: string,
+    email?: string,
+    role?: string,
+  ): Promise<Users[]> {
     try {
       interface Query {
         name?: string;
@@ -77,10 +81,16 @@ export class UsersService {
   }
 
   //Update UserBy ID
-  async updateUser(id: string): Promise<any> {
+  async updateUser(id: string, createuserDto: CreateUserDto): Promise<any> {
     try {
       const parseId = new Types.ObjectId(id);
-      const result = await this.userModel.findOneAndUpdate(parseId).exec();
+      const result = await this.userModel
+        .findByIdAndUpdate(parseId, createuserDto, {
+          new: true,
+          runValidators: true,
+        })
+        .exec();
+      return result;
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
