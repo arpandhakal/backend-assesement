@@ -21,6 +21,7 @@ NestJS is a framework for building efficient, scalable Node.js server-side appli
 
 ```bash
 git clone 
+```
 2. Run the project
 ```bash
 npm run start #inside the nest-app directory
