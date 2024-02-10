@@ -25,5 +25,5 @@ git clone
 ```bash
 npm run start #inside the nest-app directory
 npm run start:dev #for restarting the server automatically
-=======
+```
 
